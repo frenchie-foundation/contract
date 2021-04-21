@@ -3,11 +3,9 @@
 // | |_  | |_) |  _| |  \| | |   | |_| || ||  _|   | |_ / _ \ | |_) | |\/| |
 // |  _| |  _ <| |___| |\  | |___|  _  || || |___  |  _/ ___ \|  _ <| |  | |
 // |_|   |_| \_\_____|_| \_|\____|_| |_|___|_____| |_|/_/   \_\_| \_\_|  |_|
-// File @uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol@v1.0.1
-// By spiry.ro // 
 pragma solidity >=0.5.0;
 
-interface IUniswapV2Pair {
+interface IPancakePair {
     event Approval(address indexed owner, address indexed spender, uint value);
     event Transfer(address indexed from, address indexed to, uint value);
 
@@ -973,7 +971,7 @@ contract FrenchieFarm is IERC777Recipient, ReentrancyGuard {
      * @param _multisig address Address of the FREN DAO multisig.
      */
     constructor(address _pool, address _token, address _multisig) public {
-        require(IUniswapV2Pair(_pool).token0() == _token || IUniswapV2Pair(_pool).token1() == _token, "FrenFarm: wrong token address");
+        require(IPancakePair(_pool).token0() == _token || IPancakePair(_pool).token1() == _token, "FrenFarm: wrong token address");
         pool = IERC20(_pool);
         hopr = IERC20(_token);
         multisig = _multisig;
@@ -1062,7 +1060,7 @@ contract FrenchieFarm is IERC777Recipient, ReentrancyGuard {
      * @param s ECDSA signature.
      */
     function openFarmWithPermit(uint256 amount, address owner, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external nonReentrant {
-        IUniswapV2Pair(address(pool)).permit(owner, address(this), amount, deadline, v, r, s);
+        IPancakePair(address(pool)).permit(owner, address(this), amount, deadline, v, r, s);
         _openFarm(amount, owner);
     }
 
