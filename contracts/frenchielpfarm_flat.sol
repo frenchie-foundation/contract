@@ -1063,6 +1063,11 @@ contract Farm is Ownable {
     user.amount = 0;
     user.rewardDebt = 0;
   }
+  
+   function recoverERC20(address tokenAddress, uint256 tokenAmount) public virtual onlyOwner {
+        IERC20(tokenAddress).transfer(owner(), tokenAmount);
+    }
+
 
   // Transfer ERC20 and update the required ERC20 to payout all rewards
   function erc20Transfer(address _to, uint256 _amount) internal {
