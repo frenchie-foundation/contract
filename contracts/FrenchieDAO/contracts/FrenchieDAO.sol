@@ -947,8 +947,6 @@ library SafeERC20 {
   }
 }
 
-// File: contracts\KushFund\kSEEDGovernance.sol
-
 // FrenchieDAO Contract version 0.1 Initial DAO
 // By @SpiryBTC and @developerdavi
 //
@@ -970,6 +968,8 @@ contract FrenchieDAO is ERC20 {
   using SafeMath for uint256;
   address public frenAddress;
   IERC20 private frenIERC20;
+  uint sumOfProposalVotes;
+
 
   struct status {
     bool isAdmin;
@@ -989,6 +989,7 @@ contract FrenchieDAO is ERC20 {
   uint256 public topVotes;
 
   struct proposal {
+    
     string proposalQuestion;
     address proposer;
     string[] options;
@@ -1005,7 +1006,13 @@ contract FrenchieDAO is ERC20 {
     require(currentAdmins[msg.sender].isAdmin, 'You do not have permission.');
     _;
   }
+/// @notice The EIP-712 typehash for the contract's domain
+  bytes32 public constant DOMAIN_TYPEHASH = keccak256("EIP712Domain(string name,uint256 chainId,address verifyingContract)");
 
+/// @notice The EIP-712 typehash for the delegation struct used by the contract
+  bytes32 public constant DELEGATION_TYPEHASH = keccak256("Delegation(address delegatee,uint256 nonce,uint256 expiry)");
+  
+  
   event proposalCreated(address indexed proposer, string question);
   event votedForProposal(address indexed voter, string question, string option);
   event frenWithdrawn(address indexed voter, uint256 amount);
