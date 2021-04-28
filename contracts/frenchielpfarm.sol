@@ -17,7 +17,7 @@ import '@openzeppelin/contracts/access/Ownable.sol';
 // Cloned from https://github.com/SashimiProject/sashimiswap/blob/master/contracts/MasterChef.sol
 // Modified by Frenchie Network to work for non-mintable BEP-20.
 // MASTERCHEF: @SpiryBTC
-contract Farm is Ownable {
+contract FrenchieFarm is Ownable {
   using SafeMath for uint256;
   using SafeERC20 for IERC20;
 
@@ -91,7 +91,7 @@ contract Farm is Ownable {
 
   // Fund the farm, increase the end block
   function fund(uint256 _amount) public {
-    require(block.number < endBlock, 'fund: too late, the farm is closed');
+    require(block.number < endBlock, 'FREN-Fund: Too late, the farm is closed!');
 
     erc20.safeTransferFrom(address(msg.sender), address(this), _amount);
     endBlock += _amount.div(rewardPerBlock);
@@ -110,7 +110,7 @@ contract Farm is Ownable {
     for (uint256 index = 0; index < poolInfo.length; index++) {
       require(
         poolInfo[index].lpToken != _lpToken,
-        'add: you can not add the same lp token twice'
+        'FREN-Add: you can not add the same LP token twice'
       );
     }
     uint256 lastRewardBlock =
@@ -241,7 +241,7 @@ contract Farm is Ownable {
     UserInfo storage user = userInfo[_pid][msg.sender];
     require(
       user.amount >= _amount,
-      "withdraw: can't withdraw more than deposit"
+      "FREN-withdraw: Cannot withdraw more than deposit"
     );
     updatePool(_pid);
     uint256 pendingAmount =
