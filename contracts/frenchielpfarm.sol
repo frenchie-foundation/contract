@@ -110,7 +110,7 @@ contract Farm is Ownable {
     for (uint256 index = 0; index < poolInfo.length; index++) {
       require(
         poolInfo[index].lpToken != _lpToken,
-        "add: you can't add the same lp token twice"
+        'add: you can not add the same lp token twice'
       );
     }
     uint256 lastRewardBlock =
