@@ -1,0 +1,13 @@
+{
+  "name": "frenchie-contracts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:FrenchieNetwork/contract.git",
+  "author": "Davi Rodrigues <developer.davi@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@openzeppelin/contracts": "^3.2.0",
+    "solc": "^0.6.6",
+    "truffle": "^5.3.3"
+  }
+}
