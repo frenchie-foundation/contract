@@ -2,4 +2,3 @@ node_modules
 .openzeppelin/.session
 yarn-error.log
 .openzeppelin
-build

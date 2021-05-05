@@ -5,9 +5,23 @@
   "repository": "git@github.com:FrenchieNetwork/contract.git",
   "author": "Davi Rodrigues <developer.davi@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "truffle test",
+    "dev": "ganache-cli -m \"width whip dream dress captain vessel mix drive oxygen broken soap bone\" -p 8545 -i 201903 --debug",
+    "build": "truffle compile",
+    "deploy": "truffle deploy",
+    "create": "truffle create"
+  },
   "devDependencies": {
     "@openzeppelin/contracts": "^3.2.0",
+    "bn.js": "^5.2.0",
+    "chai": "^4.3.4",
+    "eslint": "^7.25.0",
+    "eslint-plugin-mocha": "^8.1.0",
+    "eslint-plugin-truffle": "^0.3.1",
+    "ganache-cli": "^6.12.2",
     "solc": "^0.6.6",
     "truffle": "^5.3.3"
-  }
+  },
+  "dependencies": {}
 }
